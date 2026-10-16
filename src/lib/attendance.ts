@@ -16,7 +16,7 @@ export const STATUS_CLASS: Record<Status, string> = {
 
 /** Minutes since midnight from "HH:MM" or "HH:MM:SS". */
 export function timeToMinutes(t: string): number {
-  const [h, m] = t.split(":").map(Number);
+  const [h = 0, m = 0] = t.split(":").map(Number);
   return h * 60 + (m || 0);
 }
 
@@ -42,7 +42,7 @@ export function localDate(d = new Date()): string {
 
 export function euclidean(a: number[], b: number[]): number {
   let s = 0;
-  for (let i = 0; i < a.length; i++) s += (a[i] - b[i]) ** 2;
+  for (let i = 0; i < a.length; i++) s += ((a[i] ?? 0) - (b[i] ?? 0)) ** 2;
   return Math.sqrt(s);
 }
 
